@@ -1,0 +1,42 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Solution",
+  "steps": [
+    {
+      "file": "index.html",
+      "description": "`for` corresponds with an `id`",
+      "line": 20
+    },
+    {
+      "file": "scripts.js",
+      "description": "If there is a `maxPrice` set, we will perform the `filter`, assigning the newly createad array to `filteredCatalog`. \n\nIf there is no `maxPrice` the contents of `filteredCatalog` would be the same as `catalog`.",
+      "line": 42
+    },
+    {
+      "file": "scripts.js",
+      "description": "`map` over `filteredCatalog` to create a new array of strings (the `<li>`s).",
+      "line": 47
+    },
+    {
+      "file": "scripts.js",
+      "description": "`join` this array into a string.",
+      "line": 48
+    },
+    {
+      "file": "scripts.js",
+      "description": "`'input'` is used as a CSS Selector",
+      "line": 55
+    },
+    {
+      "file": "scripts.js",
+      "description": "`'input'` is an [event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event).\n\nWe are also doing _nested destructuring._ Destructure `target`, which is an _object._ Destucture `value` from `target`, which gives us a _string._",
+      "line": 56
+    },
+    {
+      "file": "scripts.js",
+      "description": "Re-render each time this changes. Make sure it's a `Number`. Yes, even if we say `type=\"number\"` once JS gets this `value`, it's going to be a string.",
+      "line": 57
+    }
+  ],
+  "ref": "master"
+}

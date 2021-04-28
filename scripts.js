@@ -32,11 +32,13 @@ const catalog = [
   { category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7' },
 ];
 
-const input = document.querySelector('input');
 const ul = document.createElement('ul');
-let maxPrice = null;
 
-function render() {
+/**
+ * Render based on the value of `maxPrice`
+ * @param {number} maxPrice
+ */
+function render(maxPrice) {
   const filteredCatalog = maxPrice
     ? catalog.filter(({ price }) => price.slice(1) < maxPrice)
     : catalog;
@@ -49,7 +51,8 @@ function render() {
 document.body.appendChild(ul);
 render();
 
-input.addEventListener('input', event => {
-  maxPrice = Number(event.target.value);
-  render();
-});
+document
+  .querySelector('input')
+  .addEventListener('input', ({ target: { value } }) => {
+    render(Number(value));
+  });

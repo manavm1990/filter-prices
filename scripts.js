@@ -33,7 +33,7 @@ const catalog = [
 ];
 
 const tbody = document.querySelector('tbody');
-const template = document.querySelector('template');
+const { content } = document.querySelector('template');
 
 /**
  * Render based on the value of `maxPrice`
@@ -45,17 +45,16 @@ function render(maxPrice) {
     : // If there is no `maxPrice` `filteredCatalog` will be the same as `catalog`
       catalog;
 
-  /**
-   * For each (or map) item in `filteredCatalog`,
-   * clone the template contents (the `tr`)
-   *
-   * Grab the empty `td`s.
-   *
-   * Insert `name` as the `textContent` in the first,
-   * and do the same for `price` in the second.
-   *
-   * Append the row to the `tbody`
-   */
+  tbody.innerHTML = '';
+
+  filteredCatalog.forEach(({ name, price }) => {
+    const newRow = content.cloneNode(true);
+    const tds = newRow.querySelectorAll('td');
+    tds[0].innerText = name;
+    tds[1].innerText = price;
+
+    tbody.appendChild(newRow);
+  });
 }
 
 render();

@@ -42,7 +42,8 @@ const template = document.querySelector('template');
 function render(maxPrice) {
   const filteredCatalog = maxPrice
     ? catalog.filter(({ price }) => price.slice(1) < maxPrice)
-    : catalog;
+    : // If there is no `maxPrice` `filteredCatalog` will be the same as `catalog`
+      catalog;
 
   /**
    * For each (or map) item in `filteredCatalog`,

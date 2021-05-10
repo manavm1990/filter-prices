@@ -32,6 +32,9 @@ const catalog = [
   { category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7' },
 ];
 
+const tbody = document.querySelector('tbody');
+const template = document.querySelector('template');
+
 /**
  * Render based on the value of `maxPrice`
  * @param {number} maxPrice
@@ -40,6 +43,18 @@ function render(maxPrice) {
   const filteredCatalog = maxPrice
     ? catalog.filter(({ price }) => price.slice(1) < maxPrice)
     : catalog;
+
+  /**
+   * For each (or map) item in `filteredCatalog`,
+   * clone the template contents (the `tr`)
+   *
+   * Grab the empty `td`s.
+   *
+   * Insert `name` as the `textContent` in the first,
+   * and do the same for `price` in the second.
+   *
+   * Append the row to the `tbody`
+   */
 }
 
 render();

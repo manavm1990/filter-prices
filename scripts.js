@@ -81,3 +81,12 @@ document
       ),
     );
   });
+
+document.querySelector('button').addEventListener('click', () => {
+  const totalValue = catalog.reduce(
+    (total, { price }) => total + Number(price.slice(1)),
+    0,
+  );
+
+  console.log(totalValue);
+});

@@ -39,15 +39,10 @@ const { content } = document.querySelector('template');
  * Render based on the value of `maxPrice`
  * @param {number} maxPrice
  */
-function render(maxPrice) {
-  const filteredCatalog = maxPrice
-    ? catalog.filter(({ price }) => price.slice(1) < maxPrice)
-    : // If there is no `maxPrice` `filteredCatalog` will be the same as `catalog`
-      catalog;
-
+function render(products) {
   tbody.innerHTML = '';
 
-  filteredCatalog.forEach(({ name, price }) => {
+  products.forEach(({ name, price }) => {
     const newRow = content.cloneNode(true);
     const tds = newRow.querySelectorAll('td');
     tds[0].innerText = name;
@@ -57,10 +52,21 @@ function render(maxPrice) {
   });
 }
 
-render();
+render(catalog);
 
 document
-  .querySelector('input')
+  .querySelector('#max-price')
   .addEventListener('input', ({ target: { value } }) => {
-    render(Number(value));
+    // Filter out the catalog and pass in the filteredProducts
+    render(catalog.filter(({ price }) => price.slice(1) < Number(value)));
+  });
+
+document
+  .querySelector('#in-stock-only')
+  .addEventListener('change', ({ target: { checked } }) => {
+    if (checked) {
+      render(catalog.filter(({ stocked }) => stocked));
+    } else {
+      render(catalog);
+    }
   });

@@ -1,36 +1,4 @@
-const catalog = [
-  {
-    category: 'Sporting Goods',
-    price: '$49.99',
-    stocked: true,
-    name: 'Football',
-  },
-  {
-    category: 'Sporting Goods',
-    price: '$9.99',
-    stocked: true,
-    name: 'Baseball',
-  },
-  {
-    category: 'Sporting Goods',
-    price: '$29.99',
-    stocked: false,
-    name: 'Basketball',
-  },
-  {
-    category: 'Electronics',
-    price: '$99.99',
-    stocked: true,
-    name: 'iPod Touch',
-  },
-  {
-    category: 'Electronics',
-    price: '$399.99',
-    stocked: false,
-    name: 'iPhone 5',
-  },
-  { category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7' },
-];
+import { catalog, filterByInStock, filterByMaxPrice, search } from './lib.js';
 
 const tbody = document.querySelector('tbody');
 const { content } = document.querySelector('template');
@@ -58,14 +26,14 @@ document
   .querySelector('#max-price')
   .addEventListener('input', ({ target: { value } }) => {
     // Filter out the catalog and pass in the filteredProducts
-    render(catalog.filter(({ price }) => price.slice(1) < Number(value)));
+    render(filterByMaxPrice(catalog, value));
   });
 
 document
   .querySelector('#in-stock-only')
   .addEventListener('change', ({ target: { checked } }) => {
     if (checked) {
-      render(catalog.filter(({ stocked }) => stocked));
+      render(filterByInStock(catalog));
     } else {
       render(catalog);
     }
@@ -75,11 +43,7 @@ document
   .querySelector('#search')
   .addEventListener('input', ({ target: { value } }) => {
     // Filter out the catalog and pass in the filteredProducts
-    render(
-      catalog.filter(({ name }) =>
-        name.toLowerCase().includes(value.toLowerCase()),
-      ),
-    );
+    render(search(catalog, value));
   });
 
 document.querySelector('button').addEventListener('click', () => {

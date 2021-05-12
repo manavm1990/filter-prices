@@ -70,3 +70,14 @@ document
       render(catalog);
     }
   });
+
+document
+  .querySelector('#search')
+  .addEventListener('input', ({ target: { value } }) => {
+    // Filter out the catalog and pass in the filteredProducts
+    render(
+      catalog.filter(({ name }) =>
+        name.toLowerCase().includes(value.toLowerCase()),
+      ),
+    );
+  });
